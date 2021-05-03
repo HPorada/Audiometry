@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Audiometry</string>
+
+    <string name="title">Audiometria tonalna</string>
+    <string name="what">O audiometrii</string>
+    <string name="do_test">Wykonaj badanie</string>
+    <string name="saved">Przegląd badań</string>
+    <string name="hygiene">Dbanie o słuch</string>
+
+    <string name="description">Icon</string>
+
+    <string name="start_test">Start</string>
+    <string name="earphones">Słuchawki</string>
+    <string name="speaker">Głośnik</string>
+    <string name="heard">Dźwięk słyszalny</string>
+    <string name="not_heard">Dżwięk niesłyszalny</string>
+    <string name="treshold">Dźwięk na granicy słyszalności</string>
+
+    <string name="save">Zapisz badanie</string>
+</resources>
