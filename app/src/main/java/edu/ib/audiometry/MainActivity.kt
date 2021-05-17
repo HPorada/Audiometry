@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    //DO POPRAWY!!
+
 
     /*fun createResultList() {
         results.clear()

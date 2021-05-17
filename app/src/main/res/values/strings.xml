@@ -14,7 +14,7 @@
     <string name="earphones">Słuchawki</string>
     <string name="speaker">Głośnik</string>
     <string name="heard">Dźwięk słyszalny</string>
-    <string name="not_heard">Dżwięk niesłyszalny</string>
+    <string name="not_heard">Dźwięk niesłyszalny</string>
     <string name="treshold">Dźwięk na granicy słyszalności</string>
 
     <string name="save">Zapisz badanie</string>

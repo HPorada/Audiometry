@@ -8,9 +8,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-
+import com.jjoe64.graphview.series.DataPoint
+import com.jjoe64.graphview.series.LineGraphSeries
 
 class TestActivity : AppCompatActivity() {
+
+    var series: ArrayList<Double> = ArrayList();
 
     var counter = 0
     val recordings = arrayOf<Int>(
@@ -73,6 +76,7 @@ class TestActivity : AppCompatActivity() {
             toast.show()
 
             val intent = Intent(this, ResultActivity::class.java)
+            intent.putExtra("SERIES", series);
             startActivity(intent)
         }
     }
@@ -83,6 +87,32 @@ class TestActivity : AppCompatActivity() {
 
     fun onThresholdClick(view: View) {
         curVolume = 0.5 * maxVolume
+
+        var x = 0.0;
+        var y = 0.0;
+
+        when (counter) {
+            0 -> x = 250.0;
+            1 -> x = 500.0;
+            2 -> x = 1000.0;
+            3 -> x = 2000.0;
+            4 -> x = 3000.0;
+            5 -> x = 4000.0;
+            6 -> x = 6000.0;
+            7 -> x = 8000.0;
+            else -> x = 0.0;
+        }
+
+        y = curVolume;
+
+        /* var z = [x, y];*/
+
+        series.add(x);
+        series.add(y);
+
+        /*series[series.size + 1] = x;
+        series[series.size + 1] = y;
+*/
         counter++
     }
 
