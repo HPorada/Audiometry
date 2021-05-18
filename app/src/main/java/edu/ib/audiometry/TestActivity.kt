@@ -86,8 +86,6 @@ class TestActivity : AppCompatActivity() {
     }
 
     fun onThresholdClick(view: View) {
-        curVolume = 0.5 * maxVolume
-
         var x = 0.0;
         var y = 0.0;
 
@@ -103,7 +101,7 @@ class TestActivity : AppCompatActivity() {
             else -> x = 0.0;
         }
 
-        y = curVolume;
+        y = newVolume(curVolume).toDouble();
 
         /* var z = [x, y];*/
 
@@ -113,6 +111,7 @@ class TestActivity : AppCompatActivity() {
         /*series[series.size + 1] = x;
         series[series.size + 1] = y;
 */
+        curVolume = 0.5 * maxVolume;
         counter++
     }
 
