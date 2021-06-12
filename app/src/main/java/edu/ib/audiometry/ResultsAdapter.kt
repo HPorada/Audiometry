@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class ResultsAdapter(
-    mResult: List<Result>,
+    mResult: ArrayList<Result>?,
     mOnClickListener: OnItemClickListener
 ) :
     RecyclerView.Adapter<ResultsAdapter.ViewHolder>() {
@@ -57,7 +57,7 @@ class ResultsAdapter(
     }
 
     init {
-        this.mResult = mResult
+        this.mResult = mResult as List<Result>
         this.mOnClickListener = mOnClickListener
     }
 }

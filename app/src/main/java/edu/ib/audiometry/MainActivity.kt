@@ -9,6 +9,8 @@ import java.io.BufferedReader
 import java.io.FileNotFoundException
 import java.io.FileReader
 import java.io.IOException
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +28,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onSavedTestsClick(view: View) {
+        createResultList();
+
         val intent = Intent(this, ResultsRecyclerActivity::class.java)
+        intent.putExtra("RESULTS", results)
         startActivity(intent)
     }
 
@@ -40,11 +45,11 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-
-
-    /*fun createResultList() {
+    fun createResultList() {
         results.clear()
-        val file = getExternalFilesDir(ResultActivity::getFolderName())
+
+        var result = ResultActivity();
+        val file = getExternalFilesDir(result.getFolderName())
         val fileListing = file!!.listFiles()
         if (fileListing != null) {
             for (i in fileListing.indices) {
@@ -56,8 +61,9 @@ class MainActivity : AppCompatActivity() {
                         while (bufr.readLine().also { text = it } != null) {
                             str.append(text)
                         }
-                        // val recipe = Result(fileName, str.toString())
-                        // results.add(recipe)
+                        val date = getDate(fileName)
+                        val recipe = Result(fileName, date , str.toString())
+                        results.add(recipe)
                     }
                 } catch (e: FileNotFoundException) {
                     e.printStackTrace()
@@ -69,5 +75,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }*/
+    }
+
+    fun getDate(name: String): LocalDate {
+        val formatter = DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm:ss")
+        return LocalDate.parse(name, formatter);
+    }
 }

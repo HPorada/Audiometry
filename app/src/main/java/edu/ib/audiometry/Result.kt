@@ -2,20 +2,21 @@ package edu.ib.audiometry
 
 import java.io.Serializable
 import java.time.LocalDate
+import java.util.*
 
-class Result(name: String, date: LocalDate, volumesArray: Array<Float>) :
+class Result(name: String, date: LocalDate, results: String) :
     Serializable/*, Comparable<Result>*/ {
 
     private var fileName: String = name
     private var created: LocalDate = date
-    private var volumes: Array<Float> = volumesArray
+    private var volumes: String = results
 
     fun getCreated(): LocalDate {
         return created
     }
 
     override fun toString(): String {
-        return "Result(fileName='$fileName', created=$created, volumes=${volumes.contentToString()})"
+        return "Result(fileName='$fileName', created=$created, volumes=${volumes})"
     }
 
     /*override fun compareTo(other: Result): Int {

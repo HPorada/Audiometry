@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.jjoe64.graphview.GraphView
+import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import java.io.File
@@ -41,6 +42,12 @@ class ResultActivity : AppCompatActivity() {
 
         makeSeries(series);
 
+        graph.setTitle("Audiogram");
+
+        /*val gridLabel: GridLabelRenderer = graph.getGridLabelRenderer();
+        gridLabel.setHorizontalAxisTitle("Hz");
+        gridLabel.setVerticalAxisTitle("dB");*/
+
         graph.addSeries(graphData)
 
         values = displayValues(series);
@@ -73,7 +80,7 @@ class ResultActivity : AppCompatActivity() {
         var check = true;
         var x = 0.0;
         var y = 0.0;
-        var result = " ";
+        var result = "";
 
         for (item: Double in series) {
             if (check == true) {
@@ -82,14 +89,14 @@ class ResultActivity : AppCompatActivity() {
             } else {
                 y = item;
                 check = true;
-                result = result + x.toString() + ", " + y.toString() + "; ";
+                result = result + x.toString() + "\t" + y.toString() + "\n";
             }
         }
         return result;
     }
 
     fun onSaveClick(view: View) {
-        var saveBtn: Button = findViewById<Button>(R.id.btnSave) as Button;
+      /*  var saveBtn: Button = findViewById<Button>(R.id.btnSave) as Button;*/
 
         val date = Calendar.getInstance().time
         val formatter = SimpleDateFormat.getDateTimeInstance()
@@ -101,6 +108,9 @@ class ResultActivity : AppCompatActivity() {
             try {
                 FileOutputStream(myExternalFile).use { os ->
                     os.write(values!!.toByteArray())
+/*
+                    println(values!!.toByteArray())
+*/
                     os.close()
                     Toast.makeText(this, "Test saved.", Toast.LENGTH_LONG).show()
                 }

@@ -10,19 +10,22 @@ import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
 class ResultsRecyclerActivity : AppCompatActivity(), OnItemClickListener {
-    var resultList: ArrayList<Result>? = null
+    lateinit var resultList: ArrayList<Result>;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tests_list)
-        /*resultList = MainActivity.results
+
+        resultList = getIntent().getSerializableExtra("RESULTS") as ArrayList<Result>
+        /*
+        resultList = MainActivity.results*/
         //Collections.sort(resultList)
         val rvResults = findViewById<RecyclerView>(R.id.rvResultList)
         rvResults.setHasFixedSize(true)
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
         val adapter: RecyclerView.Adapter<*> = ResultsAdapter(resultList, this)
         rvResults.layoutManager = layoutManager
-        rvResults.adapter = adapter*/
+        rvResults.adapter = adapter
     }
 
     override fun onItemClick(view: View?, position: Int) {

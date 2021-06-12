@@ -10,12 +10,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
+import kotlin.math.log10
 
 class TestActivity : AppCompatActivity() {
 
     var series: ArrayList<Double> = ArrayList();
 
     var counter = 0
+
     val recordings = arrayOf<Int>(
         R.raw.hz250,
         R.raw.hz500,
@@ -85,6 +87,10 @@ class TestActivity : AppCompatActivity() {
         return ((1 - (Math.log(maxVolume - curVolume) / Math.log(maxVolume))).toFloat())
     }
 
+    private fun decibels(volume: Double): Double {
+        return 130.0 + (20.0 * log10(volume / 600.0));
+    }
+
     fun onThresholdClick(view: View) {
         var x = 0.0;
         var y = 0.0;
@@ -102,25 +108,22 @@ class TestActivity : AppCompatActivity() {
         }
 
         y = newVolume(curVolume).toDouble();
-
-        /* var z = [x, y];*/
+        y = decibels(y);
 
         series.add(x);
         series.add(y);
 
-        /*series[series.size + 1] = x;
-        series[series.size + 1] = y;
-*/
         curVolume = 0.5 * maxVolume;
         counter++
+
     }
 
     fun onHearClick(view: View) {
         if (curVolume > 0)
             curVolume -= 0.05 * maxVolume
         else {
-            counter++
-            curVolume = 0.5 * maxVolume
+            curVolume = 0.0001 * maxVolume;
+            onThresholdClick(view);
         }
     }
 
@@ -129,8 +132,8 @@ class TestActivity : AppCompatActivity() {
         if (curVolume < maxVolume)
             curVolume += 0.05 * maxVolume
         else {
-            counter++
-            curVolume = 0.5 * maxVolume
+            curVolume = 0.9999 * maxVolume;
+            onThresholdClick(view);
         }
     }
 }

@@ -34,24 +34,6 @@
             android:onClick="onStartClick"
             android:text="@string/start_test" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/checkEarphones"
-                android:layout_width="155dp"
-                android:layout_height="wrap_content"
-                android:text="@string/earphones" />
-
-            <CheckBox
-                android:id="@+id/checkSpeaker"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/speaker" />
-        </LinearLayout>
-
         <Button
             android:id="@+id/btnHear"
             android:layout_width="match_parent"
