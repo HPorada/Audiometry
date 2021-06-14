@@ -3,6 +3,7 @@ package edu.ib.audiometry
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -13,7 +14,8 @@ class ResultsAdapter(
     RecyclerView.Adapter<ResultsAdapter.ViewHolder>() {
     class ViewHolder(
         itemView: View,
-        onItemClickListener: OnItemClickListener
+        onItemClickListener: OnItemClickListener,
+        moreBtn: ImageButton = itemView.findViewById<ImageButton>(R.id.imageButton)
     ) :
         RecyclerView.ViewHolder(itemView), View.OnClickListener {
         var text: TextView
@@ -27,6 +29,7 @@ class ResultsAdapter(
             text = itemView.findViewById<View>(R.id.tvItem) as TextView
             listener = onItemClickListener
             itemView.setOnClickListener(this)
+            moreBtn.setOnClickListener(this)
         }
     }
 
@@ -49,7 +52,7 @@ class ResultsAdapter(
     ) {
         val result: Result = mResult[position]
         val textView = holder.text
-        textView.setText(result.getCreated().toString())
+        textView. setText(result.getFileName())
     }
 
     override fun getItemCount(): Int {

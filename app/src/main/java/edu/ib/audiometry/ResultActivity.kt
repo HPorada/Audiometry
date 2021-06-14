@@ -2,6 +2,7 @@ package edu.ib.audiometry
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -16,6 +17,9 @@ import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class ResultActivity : AppCompatActivity() {
@@ -23,6 +27,7 @@ class ResultActivity : AppCompatActivity() {
     private val folderName = "SavedResults"
     private var graphData: LineGraphSeries<DataPoint> = LineGraphSeries();
     private var values: String? = null;
+    private var valToSave: String? = null;
 
     fun getFolderName(): String {
         return folderName
@@ -35,7 +40,6 @@ class ResultActivity : AppCompatActivity() {
         val intent: Intent = getIntent();
         val series: ArrayList<Double> =
             getIntent().getSerializableExtra("SERIES") as ArrayList<Double>
-        //val result = getIntent().getSerializableExtra("SERIES") as? Result
 
         var text = findViewById<TextView>(R.id.tvResult) as TextView
         var graph = findViewById<GraphView>(R.id.graph) as GraphView
@@ -44,19 +48,15 @@ class ResultActivity : AppCompatActivity() {
 
         graph.setTitle("Audiogram");
 
-        /*val gridLabel: GridLabelRenderer = graph.getGridLabelRenderer();
-        gridLabel.setHorizontalAxisTitle("Hz");
-        gridLabel.setVerticalAxisTitle("dB");*/
-
         graph.addSeries(graphData)
 
         values = displayValues(series);
         text.setText(values);
 
-        /*name.movementMethod = ScrollingMovementMethod()
-        name.setText(result.toString())*/
+        valToSave = saveValues(series);
 
-        /*series.appendData(DataPoint(x, y), true, 8);*/
+        text.movementMethod = ScrollingMovementMethod()
+
     }
 
     fun makeSeries(series: ArrayList<Double>) {
@@ -81,6 +81,7 @@ class ResultActivity : AppCompatActivity() {
         var x = 0.0;
         var y = 0.0;
         var result = "";
+        var message = "";
 
         for (item: Double in series) {
             if (check == true) {
@@ -88,15 +89,35 @@ class ResultActivity : AppCompatActivity() {
                 check = false;
             } else {
                 y = item;
+
+                if (y <= 25) message = "słuch w normie"
+                else if (y > 25 && y <= 40) message = "łagodny ubytek słuchu"
+                else if (y > 40 && y <= 55) message = "umiarkowany ubytek słuchu"
+                else if (y > 55 && y <= 70) message = "umiarkowanie poważny ubytek słuchu"
+                else if (y > 70 && y <= 90) message = "poważny ubytek słuchu"
+                else if (y > 90 && y <= 120) message = "głęboki ubytek słuchu"
+                else message = "brak informacji"
+
                 check = true;
-                result = result + x.toString() + "\t" + y.toString() + "\n";
+                result =
+                    result + "Dla częstotliwości " + x.toString() + " Hz: " + message + ". (" + ((y * 100).toInt() / 100.0).toString() + " dB)" + "\n\n";
             }
         }
         return result;
     }
 
+    fun saveValues(series: ArrayList<Double>): String {
+        var x = 0.0;
+        var result = "";
+
+        for (item: Double in series) {
+            x = item;
+            result = result + x.toString() + "\t"
+        }
+        return result;
+    }
+
     fun onSaveClick(view: View) {
-      /*  var saveBtn: Button = findViewById<Button>(R.id.btnSave) as Button;*/
 
         val date = Calendar.getInstance().time
         val formatter = SimpleDateFormat.getDateTimeInstance()
@@ -107,10 +128,7 @@ class ResultActivity : AppCompatActivity() {
         if (values != null) {
             try {
                 FileOutputStream(myExternalFile).use { os ->
-                    os.write(values!!.toByteArray())
-/*
-                    println(values!!.toByteArray())
-*/
+                    os.write(valToSave?.toByteArray())
                     os.close()
                     Toast.makeText(this, "Test saved.", Toast.LENGTH_LONG).show()
                 }

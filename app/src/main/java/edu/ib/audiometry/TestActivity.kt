@@ -115,7 +115,6 @@ class TestActivity : AppCompatActivity() {
 
         curVolume = 0.5 * maxVolume;
         counter++
-
     }
 
     fun onHearClick(view: View) {
@@ -126,7 +125,6 @@ class TestActivity : AppCompatActivity() {
             onThresholdClick(view);
         }
     }
-
 
     fun onNotHearClick(view: View) {
         if (curVolume < maxVolume)
