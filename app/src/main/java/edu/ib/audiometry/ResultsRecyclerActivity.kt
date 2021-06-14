@@ -21,9 +21,6 @@ class ResultsRecyclerActivity : AppCompatActivity(), OnItemClickListener {
         setContentView(R.layout.activity_tests_list)
 
         resultList = getIntent().getSerializableExtra("RESULTS") as ArrayList<Result>
-        /*
-        resultList = MainActivity.results*/
-        //Collections.sort(resultList)
         val rvResults = findViewById<RecyclerView>(R.id.rvResultList)
         rvResults.setHasFixedSize(true)
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
@@ -68,35 +65,6 @@ class ResultsRecyclerActivity : AppCompatActivity(), OnItemClickListener {
         if (deleted) {
             Toast.makeText(this, "File successfully deleted.", Toast.LENGTH_LONG).show()
         }
-
-        /*val fileListing = file!!.listFiles()
-        if (fileListing != null) {
-            for (i in fileListing.indices) {
-                val str = StringBuilder()
-                try {
-                    BufferedReader(FileReader(fileListing[i])).use { bufr ->
-                        val fileName = fileListing[i].name
-                        var text: String?
-                        while (bufr.readLine().also { text = it } != null) {
-                            str.append(text)
-                        }
-                        val result = Result(fileName, str.toString())
-                        results.add(result)
-
-                        *//* val date = getDate(fileName)
-                         val recipe = Result(fileName, date , str.toString())
-                         results.add(recipe)*//*
-                    }
-                } catch (e: FileNotFoundException) {
-                    e.printStackTrace()
-                    Toast.makeText(this, "File not found.", Toast.LENGTH_LONG).show()
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                    Toast.makeText(this, "Something went wrong. Try again.", Toast.LENGTH_LONG)
-                        .show()
-                }
-            }
-        }*/
     }
 
     fun getValues(position: Int): String {
@@ -117,20 +85,4 @@ class ResultsRecyclerActivity : AppCompatActivity(), OnItemClickListener {
 
         return series;
     }
-
-    fun deleteResult(view: View) {}
-
-    /*fun onSearchClick(view: View?) {
-        val edt = findViewById<View>(R.id.edtSearch2) as EditText
-        val search = edt.text.toString()
-        var recipe = Recipe()
-        for (i in recipeList!!.indices) {
-            if (search == recipeList!![i].getName()) {
-                recipe = recipeList!![i]
-                val intent = Intent(this, RecipeActivity::class.java)
-                intent.putExtra("RecipeExtra", recipe)
-                startActivity(intent)
-            }
-        }
-    }*/
 }

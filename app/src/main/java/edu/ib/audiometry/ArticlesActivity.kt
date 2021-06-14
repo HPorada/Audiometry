@@ -18,33 +18,5 @@ class ArticlesActivity : AppCompatActivity() {
         var tvHygiene: TextView = findViewById<TextView>(R.id.tvHygiene) as TextView;
 
         tvHygiene.movementMethod = ScrollingMovementMethod()
-
-        //var saveBtn: Button = findViewById<Button>(R.id.btnSave) as Button;
-
-       /* var tvHygiene: TextView = findViewById<TextView>(R.id.tvHygiene) as TextView;
-
-        tvHygiene.movementMethod = ScrollingMovementMethod()
-
-        var r: BufferedReader? = null;
-
-        try {
-            val inStream = getResources().openRawResource(R.raw.hearing);
-            r = BufferedReader(InputStreamReader(getAssets().open(R.values.hearing)));
-
-            var line: String;
-
-            while (line = r.readLine() != null) {
-                text.append(line);
-            }
-
-        } catch (var e: IOException) {
-            Toast.makeText(this, "Something went wrong. Try again.", Toast.LENGTH_LONG).show()
-            e.printStackTrace()
-        } finally {
-            if (r != null) {
-
-            }
-        }*/
-
     }
 }

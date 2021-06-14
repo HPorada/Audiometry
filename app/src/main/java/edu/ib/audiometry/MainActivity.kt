@@ -65,10 +65,6 @@ class MainActivity : AppCompatActivity() {
                         }
                         val result = Result(fileName, str.toString())
                         results.add(result)
-
-                        /* val date = getDate(fileName)
-                         val recipe = Result(fileName, date , str.toString())
-                         results.add(recipe)*/
                     }
                 } catch (e: FileNotFoundException) {
                     e.printStackTrace()
@@ -81,39 +77,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-    /*fun getDate(name: String): LocalDateTime {
-        *//*val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        return LocalDateTime.parse(name, formatter);*//*
-        val sep = name.split("\\s".toRegex())[0]
-
-        val dd = Integer.parseInt(sep[0].toString());
-
-        var mm = 0;
-
-        when (sep[1].toString()) {
-            "sty" -> mm = 1
-            "lut" -> mm = 2
-            "mar" -> mm = 3
-            "kwi" -> mm = 4
-            "maj" -> mm = 5
-            "cze" -> mm = 6
-            "lip" -> mm = 7
-            "sie" -> mm = 8
-            "wrz" -> mm = 9
-            "paź" -> mm = 10
-            "lis" -> mm = 11
-            "gru" -> mm = 12
-        }
-
-        val yy = Integer.parseInt(sep[2].toString())
-
-        val hour = Integer.parseInt(sep[3].toString())
-
-        val min = Integer.parseInt(sep[4].toString())
-
-        val sec = Integer.parseInt(sep[5].toString())
-
-        return LocalDateTime.of(yy, mm, dd, hour, min, sec);
-    }*/
 }

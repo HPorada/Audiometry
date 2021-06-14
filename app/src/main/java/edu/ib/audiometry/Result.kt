@@ -11,25 +11,15 @@ class Result(name: String, results: String) :
     private var fileName: String = name
     private var volumes: String = results
 
-    fun getFileName(): String{
+    fun getFileName(): String {
         return fileName;
     }
 
-    fun getVolumes(): String{
+    fun getVolumes(): String {
         return volumes;
     }
 
     override fun toString(): String {
         return "Result(fileName='$fileName', volumes=${volumes})"
     }
-
-    /*override fun compareTo(other: Result): Int {
-        *//*val name: Int = this.created.compareTo(other.getCreated())
-        return if (name == 0) name.compareTo(other.getCreated()) else name*//*
-
-        *//*if (this.created.compareTo(other.created)) {*//*
-
-        }
-    }*/
-
 }
