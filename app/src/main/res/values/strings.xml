@@ -11,6 +11,8 @@
     <string name="description2">Result</string>
 
     <string name="start_test">Start</string>
+
+    <string name="play">Odtwórz dźwięk</string>
     <string name="earphones">Słuchawki</string>
     <string name="speaker">Głośnik</string>
     <string name="heard">Dźwięk słyszalny</string>
@@ -33,4 +35,6 @@
 
     <string name="audiometry">Progowa audiometria tonalna, jest badaniem subiektywnym, podczas którego sprawdza się zdolność słyszenia progowego czystych tonów (tj. bez zakłóceń) w zakresie częstotliwości od 250 Hz do 8 kHz.\n\nW tradycyjnym badaniu dźwięk jest przekazywany za pomocą nausznych słuchawek powietrznych lub słuchawek kostnych. W aplikacji została zaimplementowana uproszczona wersja badania, polegająca na przekazywaniu dźwięku droga powietrzną, bez użycia słuchawek.\n\nCelem badania jest zodentyfikowanie najcichszego dźwięku słyszanego przez osobę badaną. Test jest subiektywny, ponieważ to osoba badana określa, czy dźwięk jest dla niej słyszalny, czy nie.
     </string>
+
+    <string name="info">Instrukcja</string>
 </resources>
