@@ -18,7 +18,7 @@ class TestActivity : AppCompatActivity() {
 
     var counter = 0
 
-    val recordings = arrayOf<Int>(
+    var recordings = arrayOf<Int>(
         R.raw.hz250,
         R.raw.hz500,
         R.raw.hz1000,
@@ -35,9 +35,35 @@ class TestActivity : AppCompatActivity() {
     var left = 0.0
     var right = 0.0
 
+    var option: String = "";
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
+
+        val intent: Intent = getIntent();
+        option = getIntent().getStringExtra("OPTION") as String
+
+        if (option == "earphones") {
+            recordings = arrayOf<Int>(
+                R.raw.hz250,
+                R.raw.hz500,
+                R.raw.hz1000,
+                R.raw.hz2000,
+                R.raw.hz3000,
+                R.raw.hz4000,
+                R.raw.hz6000,
+                R.raw.hz8000,
+                R.raw.hz250,
+                R.raw.hz500,
+                R.raw.hz1000,
+                R.raw.hz2000,
+                R.raw.hz3000,
+                R.raw.hz4000,
+                R.raw.hz6000,
+                R.raw.hz8000
+            )
+        }
 
         var mgr: AudioManager? = null
 
@@ -57,11 +83,22 @@ class TestActivity : AppCompatActivity() {
 
         if (counter < recordings.size) {
             try {
+
                 volume = newVolume(curVolume)
 
                 val mediaPlayer = MediaPlayer.create(this, recordings.get(counter))
                 mediaPlayer.isLooping = false
-                mediaPlayer.setVolume(volume, volume)
+
+                if (option == "speaker") {
+                    mediaPlayer.setVolume(volume, volume)
+                } else {
+                    if (counter < 8) {
+                        mediaPlayer.setVolume(0.0f, volume)
+                    } else if (counter >= 8) {
+                        mediaPlayer.setVolume(volume, 0.0f)
+                    }
+                }
+
                 mediaPlayer.start()
 
                 mediaPlayer.setOnCompletionListener(MediaPlayer.OnCompletionListener {
@@ -104,6 +141,14 @@ class TestActivity : AppCompatActivity() {
             5 -> x = 4000.0;
             6 -> x = 6000.0;
             7 -> x = 8000.0;
+            8 -> x = 250.0;
+            9 -> x = 500.0;
+            10 -> x = 1000.0;
+            11 -> x = 2000.0;
+            12 -> x = 3000.0;
+            13 -> x = 4000.0;
+            14 -> x = 6000.0;
+            15 -> x = 8000.0;
             else -> x = 0.0;
         }
 

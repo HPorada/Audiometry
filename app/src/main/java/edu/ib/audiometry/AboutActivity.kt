@@ -11,7 +11,7 @@ class AboutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
 
-        var tvAudiometry: TextView = findViewById<TextView>(R.id.tvInfo) as TextView;
+        var tvAudiometry: TextView = findViewById<TextView>(R.id.tvInstruction) as TextView;
 
         tvAudiometry.movementMethod = ScrollingMovementMethod()
     }

@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onStartTestClick(view: View) {
-        val intent = Intent(this, TestActivity::class.java)
+        val intent = Intent(this, StartTestActivity::class.java)
         startActivity(intent)
     }
 
